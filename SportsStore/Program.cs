@@ -11,6 +11,11 @@ builder.Services.AddDbContext<StoreDbContext>(opts => {
 });
 
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
+
+builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
 //The AddScoped method creates a service where each HTTP request gets its own repository object, which
 //is the way that Entity Framework Core is typically used.
 var app = builder.Build();
@@ -18,6 +23,7 @@ var app = builder.Build();
 //app.MapGet("/", () => "Hello World!");
 
 app.UseStaticFiles();
+app.UseSession();
 
 app.MapControllerRoute("catpage",
 "{department}/Page{productPage:int}",
@@ -34,6 +40,7 @@ app.MapControllerRoute("pagination",
 new { Controller = "Home", action = "Index", productPage = 1 });
 
 app.MapDefaultControllerRoute();
+app.MapRazorPages();
 
 SeedData.EnsurePopulated(app);
 
