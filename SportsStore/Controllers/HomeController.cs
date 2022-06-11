@@ -17,18 +17,21 @@ namespace SportsStore.Controllers
         {
             repository = repo;
         }
-        public ViewResult Index(int productPage = 1)
+        public ViewResult Index(string? department, int productPage = 1)
         => View(new ProductsListViewModel
         {
             Products = repository.Products
-        .OrderBy(p => p.ProductID)
-        .Skip((productPage - 1) * PageSize).Take(PageSize),
+            .Where(p => department == null || p.Department.Name.Equals(department))
+            .OrderBy(p => p.ProductID)
+            .Skip((productPage - 1) * PageSize).Take(PageSize),
             PagingInfo = new PagingInfo
             {
                 CurrentPage = productPage,
                 ItemsPerPage = PageSize,
-                TotalItems = repository.Products.Count()
-            }
+                TotalItems = department == null ? repository.Products.Count()
+                : repository.Products.Where(p => p.Department.Name == department).Count()
+            },
+            CurrentDepartment = department
         });
     }
 }

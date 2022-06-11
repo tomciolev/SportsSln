@@ -9,6 +9,7 @@ namespace SportsStore.Models
         public string Description { get; set; } = String.Empty;
         [Column(TypeName = "decimal(8, 2)")] // sepcify the sql data type
         public decimal Price { get; set; }
-        public string Category { get; set; } = String.Empty;
+        public int DepartmentID { get; set; }
+        public virtual Department? Department { get; set; }
     }
 }

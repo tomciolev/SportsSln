@@ -1,28 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsStore", "SportsStore\SportsStore.csproj", "{87AA11A3-C3A5-47C2-B26D-DEEB18CFFF8E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsStore.Tests", "SportsStore.Tests\SportsStore.Tests.csproj", "{3BB2D558-DBB9-408F-BDE4-B9878C4FF3ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsStore", "SportsStore\SportsStore.csproj", "{87AA11A3-C3A5-47C2-B26D-DEEB18CFFF8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{87AA11A3-C3A5-47C2-B26D-DEEB18CFFF8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{87AA11A3-C3A5-47C2-B26D-DEEB18CFFF8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87AA11A3-C3A5-47C2-B26D-DEEB18CFFF8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87AA11A3-C3A5-47C2-B26D-DEEB18CFFF8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3BB2D558-DBB9-408F-BDE4-B9878C4FF3ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BB2D558-DBB9-408F-BDE4-B9878C4FF3ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BB2D558-DBB9-408F-BDE4-B9878C4FF3ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BB2D558-DBB9-408F-BDE4-B9878C4FF3ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0CF947C9-96B8-454D-9C0F-1A093C0EDB1C}
 	EndGlobalSection
 EndGlobal
