@@ -15,6 +15,9 @@ builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
 builder.Services.AddRazorPages();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
+//services for the Cart class
+builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 //The AddScoped method creates a service where each HTTP request gets its own repository object, which
 //is the way that Entity Framework Core is typically used.
