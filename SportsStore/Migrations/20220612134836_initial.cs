@@ -24,6 +24,26 @@ namespace SportsStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    OrderID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ApartmentNumber = table.Column<int>(type: "int", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.OrderID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -46,35 +66,44 @@ namespace SportsStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Services",
+                name: "CartLine",
                 columns: table => new
                 {
-                    ServiceID = table.Column<long>(type: "bigint", nullable: false)
+                    CartLineID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    DepartmentID = table.Column<int>(type: "int", nullable: false)
+                    ProductID = table.Column<long>(type: "bigint", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    OrderID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Services", x => x.ServiceID);
+                    table.PrimaryKey("PK_CartLine", x => x.CartLineID);
                     table.ForeignKey(
-                        name: "FK_Services_Departments_DepartmentID",
-                        column: x => x.DepartmentID,
-                        principalTable: "Departments",
-                        principalColumn: "DepartmentID",
+                        name: "FK_CartLine_Orders_OrderID",
+                        column: x => x.OrderID,
+                        principalTable: "Orders",
+                        principalColumn: "OrderID");
+                    table.ForeignKey(
+                        name: "FK_CartLine_Products_ProductID",
+                        column: x => x.ProductID,
+                        principalTable: "Products",
+                        principalColumn: "ProductID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_DepartmentID",
-                table: "Products",
-                column: "DepartmentID");
+                name: "IX_CartLine_OrderID",
+                table: "CartLine",
+                column: "OrderID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Services_DepartmentID",
-                table: "Services",
+                name: "IX_CartLine_ProductID",
+                table: "CartLine",
+                column: "ProductID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_DepartmentID",
+                table: "Products",
                 column: "DepartmentID");
         }
 
@@ -82,10 +111,13 @@ namespace SportsStore.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "CartLine");
 
             migrationBuilder.DropTable(
-                name: "Services");
+                name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Departments");

@@ -1,0 +1,12 @@
+﻿@page
+<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<div class="text-center">
+    <h2>We are so happy!</h2>
+    <p>Thank you for placing order #@OrderId</p>
+    <p>We'll ship your products as soon as possible.</p>
+    <a class="btn btn-primary" asp-controller="Home">Return to Store</a>
+</div>
+@functions {
+    [BindProperty(SupportsGet = true)]
+    public string? OrderId { get; set; }
+}
