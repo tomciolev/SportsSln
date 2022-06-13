@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SportsStore.Models.Order>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<html>
+<head>
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<h1>Orders to ship</h1>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center">Name</th>
+            <th class="text-center">Surname</th>
+            <th colspan=2 class="text-center">Products on order</th>
+            <th>Ship</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() > 0)
+        {
+            @foreach (Order o in Model)
+            {
+                <tr>
+                    <td>@o.Name</td>
+                    <td>@o.Surname</td>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th><a class = "btn btn-danger" asp-action="Shipped" asp-route-id="@o.OrderID">Shipped</a></th>
+                </tr>
+                @foreach (CartLine line in o.Lines)
+                {
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>@line.Product.Name</td>
+                        <td>@line.Quantity</td>
+                    </tr>
+                }
+            }
+        }
+        else
+        {
+            <tr><td colspan="5" class="text-center">No Orders</td></tr>
+        }
+    </tbody>
+</table>
+</html>

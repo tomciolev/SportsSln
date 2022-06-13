@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SportsStore.Models;
 
 namespace SportsStore.Controllers
@@ -33,5 +34,17 @@ namespace SportsStore.Controllers
                 return View();
             }
         }
+        public IActionResult Index()
+        {
+            return View(repository.Orders.Where(o => o.Shipped == false).Include(p => p.Lines).ToList());   
+        }
+        public IActionResult Shipped(int id)
+        {
+            var order = repository.GetById(id);
+            order.Shipped = true;
+            repository.Update(id, order);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

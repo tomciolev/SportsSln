@@ -12,7 +12,7 @@ using SportsStore.Models;
 namespace SportsStore.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20220612134836_initial")]
+    [Migration("20220613230341_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -95,6 +95,9 @@ namespace SportsStore.Migrations
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Shipped")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Street")
                         .IsRequired()
