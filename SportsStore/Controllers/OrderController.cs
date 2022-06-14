@@ -43,7 +43,7 @@ namespace SportsStore.Controllers
             var order = repository.GetById(id);
             order.Shipped = true;
             repository.Update(order);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("ViewAll");
         }
         public ActionResult Details(int id)
         {
@@ -60,7 +60,7 @@ namespace SportsStore.Controllers
         public ActionResult DeleteConfirm(int id)
         {
             repository.Delete(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("ViewAll");
         }
     }
 }

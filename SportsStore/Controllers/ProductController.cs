@@ -27,7 +27,7 @@ namespace SportsStore.Controllers
             if (ModelState.IsValid)
             {
                 repository.Add(product);
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewAll");
             }
             return View(new Product());
         }
@@ -47,7 +47,7 @@ namespace SportsStore.Controllers
         public ActionResult Edit(Product product)
         {
             repository.Update(product);
-            return RedirectToAction("Index");
+            return RedirectToAction("ViewAll");
         }
         [HttpGet]
         public ActionResult Delete(int id)
@@ -59,7 +59,7 @@ namespace SportsStore.Controllers
         public ActionResult DeleteConfirm(int id)
         {
             repository.Delete(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("ViewAll");
         }
     }
 }
