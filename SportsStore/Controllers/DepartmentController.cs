@@ -10,7 +10,7 @@ namespace SportsStore.Controllers
         {
             repository = repo;
         }
-        public IActionResult Index()
+        public IActionResult ViewAll()
         {
             return View(repository.Departments);
         }

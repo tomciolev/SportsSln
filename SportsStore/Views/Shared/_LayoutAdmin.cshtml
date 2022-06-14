@@ -7,13 +7,28 @@
     <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="bg-dark text-white p-2">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col navbar-brand">SPORTS STORE</div>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-2">
+        <p style='font-size:20px' class="navbar-brand">SPORTS STORE - ADMINISTRATION</p>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ViewAll", "Product")">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ViewAll", "Order")">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ViewAll", "Department")">Departments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Home")">Sport Store for Users</a>
+                </li>
+            </ul>
         </div>
-    </div>
+    </nav>
     <div class="row m-1 p-2">
         <div class="col-12">
             @RenderBody()

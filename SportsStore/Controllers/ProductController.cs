@@ -11,7 +11,7 @@ namespace SportsStore.Controllers
         {
             repository = repo;
         }
-        public IActionResult Index()
+        public IActionResult ViewAll()
         {
             return View(repository.Products.Include(d => d.Department).ToList());
         }

@@ -34,7 +34,7 @@ namespace SportsStore.Controllers
                 return View();
             }
         }
-        public IActionResult Index()
+        public IActionResult ViewAll()
         {
             return View(repository.Orders.Where(o => o.Shipped == false).Include(p => p.Lines).ToList());   
         }
