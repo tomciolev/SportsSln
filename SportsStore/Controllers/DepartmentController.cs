@@ -1,35 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SportsStore.Models;
 
 namespace SportsStore.Controllers
 {
-    public class ProductController : Controller
+    public class DepartmentController : Controller
     {
-        private IStoreRepository repository;
-        public ProductController(IStoreRepository repo)
+        private IDepartmentRepository repository;
+        public DepartmentController(IDepartmentRepository repo)
         {
             repository = repo;
         }
         public IActionResult Index()
         {
-            return View(repository.Products.Include(d => d.Department).ToList());
+            return View(repository.Departments);
         }
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.Departments = repository.GetDepartments(); 
-            return View(new Product());
+            return View(new Department());
         }
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create(Department department)
         {
             if (ModelState.IsValid)
             {
-                repository.Add(product);
+                repository.Add(department);
                 return RedirectToAction("Index");
             }
-            return View(new Product());
+            return View(new Department());
         }
         public ActionResult Details(int id)
         {
@@ -40,13 +38,12 @@ namespace SportsStore.Controllers
         public ActionResult Edit(int id)
         {
             var result = repository.GetById(id);
-            ViewBag.Departments = repository.GetDepartments();
             return View(result);
         }
         [HttpPost]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(Department department)
         {
-            repository.Update(product);
+            repository.Update(department);
             return RedirectToAction("Index");
         }
         [HttpGet]
@@ -63,5 +60,3 @@ namespace SportsStore.Controllers
         }
     }
 }
-
-

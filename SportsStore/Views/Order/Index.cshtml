@@ -13,7 +13,6 @@
             <th class="text-center">Name</th>
             <th class="text-center">Surname</th>
             <th colspan=2 class="text-center">Products on order</th>
-            <th>Ship</th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +25,9 @@
                     <td>@o.Surname</td>
                     <th>Product</th>
                     <th>Quantity</th>
-                    <th><a class = "btn btn-danger" asp-action="Shipped" asp-route-id="@o.OrderID">Shipped</a></th>
+                    <th style='width:100px'><a class = "btn btn-success" asp-action="Shipped" asp-route-id="@o.OrderID">Shipped</a></th>
+                    <th style='width:80px'><a class = "btn btn-info" asp-action="Details" asp-route-id="@o.OrderID">Details</a></th>
+                    <th style='width:80px'><a class = "btn btn-danger" asp-action="Delete" asp-route-id="@o.OrderID">Delete</a></th>
                 </tr>
                 @foreach (CartLine line in o.Lines)
                 {

@@ -25,24 +25,23 @@ namespace SportsStore.Models
             }
             context.SaveChanges();
         }
-        public void Update(int id, Order order)
+
+        public Order GetById(int id)
+            => context.Orders.Include(x => x.Lines).FirstOrDefault(x => x.OrderID == id);
+        public void Delete(int id)
         {
-            var result = context.Orders.FirstOrDefault(x => x.OrderID == id);
-            if(result != null)
+            var result = GetById(id);
+            if (result != null)
             {
-                result.Name = order.Name;
-                result.Surname = order.Surname;
-                result.Street = order.Street;
-                result.City = order.City;
-                result.Country = order.Country;
-                result.ApartmentNumber = order.ApartmentNumber;
-                result.PhoneNumber = order.PhoneNumber;
-                result.Shipped = order.Shipped;
+                context.Orders.Remove(result);
                 context.SaveChanges();
             }
         }
+        public void Update(Order order)
+        {
+            context.Entry(order).State = EntityState.Modified;
+            context.SaveChanges();
+        }
 
-        public Order GetById(int id)
-            => context.Orders.FirstOrDefault(x => x.OrderID == id);
     }
 }

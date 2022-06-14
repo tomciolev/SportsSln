@@ -8,9 +8,9 @@
         //represents the collection of objects that can be queried, such as those managed by a database
         Product GetById(int id);
         void Add(Product product);
-        void Update(int id, Product product);
         void Delete(int id);
         List<Department> GetDepartments();
+        public void Update(Product product);
 
     }
 

@@ -42,9 +42,25 @@ namespace SportsStore.Controllers
         {
             var order = repository.GetById(id);
             order.Shipped = true;
-            repository.Update(id, order);
+            repository.Update(order);
             return RedirectToAction(nameof(Index));
         }
-
+        public ActionResult Details(int id)
+        {
+            var result = repository.GetById(id);
+            return View(result);
+        }
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var result = repository.GetById(id);
+            return View(result);
+        }
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirm(int id)
+        {
+            repository.Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }

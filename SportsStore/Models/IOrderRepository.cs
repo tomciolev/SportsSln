@@ -4,7 +4,8 @@
     {
         IQueryable<Order> Orders { get; }
         void SaveOrder(Order order);
-        void Update(int id, Order order);
-        Order GetById(int id);  
+        Order GetById(int id);
+        public void Delete(int id);
+        public void Update(Order order);
     }
 }

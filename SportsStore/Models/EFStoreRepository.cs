@@ -29,27 +29,17 @@ namespace SportsStore.Models
                 context.Products.Remove(result);
                 context.SaveChanges();
             }
-            
         }
         public List<Department> GetDepartments()
         {
             return(context.Departments.ToList());
         }
 
-        
-
-        public void Update(int id, Product product)
+        public void Update(Product product)
         {
-            var result = GetById(id);
-            if (result != null)
-            {
-                result.Name = product.Name;
-                result.Description = product.Description;
-                result.Price = product.Price;
-                result.Department = product.Department;
-                result.DepartmentID = product.DepartmentID;
-                context.SaveChanges();
-            }
+            context.Entry(product).State = EntityState.Modified;
+            context.SaveChanges();
         }
+
     }
 }
